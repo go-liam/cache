@@ -1,8 +1,8 @@
 package example
 
 import (
+	"github.com/go-liam/cache"
 	"github.com/go-liam/cache/redis"
-	"github.com/go-liam/cache/service"
 	"log"
 	"testing"
 
@@ -31,14 +31,14 @@ func TestRedis_NewServer(t *testing.T) {
 // 默认对象
 func TestRedis_Server(t *testing.T) {
 	n := "key_u2"
-	f := service.IsExist(n)
+	f := cache.IsExist(n)
 	log.Println("false-IsExist=", f)
-	service.Set(n, "xxxx-xxx", 10)
-	v, _ := service.Get(n)
+	cache.Set(n, "xxxx-xxx", 10)
+	v, _ := cache.Get(n)
 	log.Println("v=", v)
-	f2 := service.IsExist(n)
+	f2 := cache.IsExist(n)
 	log.Println("true-IsExist=", f2)
-	service.Delete(n)
-	f3 := service.IsExist(n)
+	cache.Delete(n)
+	f3 := cache.IsExist(n)
 	log.Println("false-IsExist=", f3)
 }

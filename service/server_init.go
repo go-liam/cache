@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"github.com/go-liam/cache"
 	"log"
 )
 
@@ -12,7 +13,7 @@ func init() {
 	url := fmt.Sprintf("%s@%s:%s", RedisConfig.RedisPwd, RedisConfig.RedisHost, RedisConfig.RedisPort)
 	//"Liam123@localhost:6379"
 	redisPrefix := RedisConfig.RedisPrefix
-	v := NewCache(url,redisPrefix)
+	v := cache.NewCache(url,redisPrefix)
 	if v {
 		log.Printf("[INFO] Redis connect scuess")
 	} else {
