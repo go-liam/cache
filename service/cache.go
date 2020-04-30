@@ -1,54 +1,55 @@
-package cache
+package service
 
 import (
+	"github.com/go-liam/cache"
 	"github.com/go-liam/cache/redis"
 )
 
-var server InCache
+var sv cache.InCache
 
 func NewCache(url string ,redisPrefix string) bool {
-	server = new(redis.SvRedis)
-	return server.NewCache(url,redisPrefix)
+	sv = new(redis.SvRedis)
+	return sv.NewCache(url,redisPrefix)
 }
 
 // Delete :
 func Delete(key string) {
 	n := GetRedisPrefix() + key
-	server.Delete(n)
+	sv.Delete(n)
 }
 
 // Set :保存多少s: value:string, []byte
 func Set(key string, value interface{}, second int) bool {
 	n := GetRedisPrefix()+ key
-	return server.Set(n,value,second )
+	return sv.Set(n,value,second )
 }
 
 // Get :
 func Get(key string) (string, error) {
 	n := GetRedisPrefix() + key
-	return  server.Get(n)
+	return  sv.Get(n)
 }
 
 // GetBytes :
 func GetBytes(key string) ([]byte, error) {
 	n := GetRedisPrefix() + key
-	return server.GetBytes(n)
+	return sv.GetBytes(n)
 }
 
 // IsExist :
 func IsExist(key string) bool {
 	n := GetRedisPrefix() + key
-	return server.IsExist(n)
+	return sv.IsExist(n)
 }
 
 func GetRedisPrefix() string {
-	return server.GetPrefix()
+	return sv.GetPrefix()
 }
 
 func GetUrl() string{
-	return server.GetUrl()
+	return sv.GetURL()
 }
 
 func NewConnect() bool  {
-	return server.Reconnect()
+	return sv.Reconnect()
 }

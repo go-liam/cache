@@ -7,7 +7,7 @@ type InCache interface {
 	GetBytes(key string) ([]byte, error)
 	IsExist(key string) bool
 	GetPrefix() string
-	GetUrl() string
+	GetURL() string
 	NewCache(url string ,redisPrefix string) bool
 	Reconnect() bool
 }

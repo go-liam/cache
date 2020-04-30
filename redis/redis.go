@@ -141,6 +141,6 @@ func (sv *SvRedis) GetPrefix() string {
 	return sv.RedisPrefix
 }
 
-func (sv *SvRedis) GetUrl() string{
+func (sv *SvRedis) GetURL() string{
 	return sv.URL
 }
